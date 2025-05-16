@@ -1,0 +1,3 @@
+ID,name,type_code,location_locationId,status_EquipmentCode,manufacturing,description,createdAt,createdBy,modifiedAt,modifiedBy
+287b366a-9534-4191-a477-a223407c69c8,Hydraulic Press,HYD,LOC001,Active,Bosch,Hydraulic Press Machine,2023-05-16T05:15:44.436Z,admin,2025-06-16T05:15:44.436Z
+287b366a-9534-4191-a477-a223407c69s8,Welding Machine,WLD,LOC002,Active,Bosch,Welding Machine,2024-05-16T05:15:44.436Z,admin,2024-06-16T05:15:44.436Z

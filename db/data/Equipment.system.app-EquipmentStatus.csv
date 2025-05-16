@@ -1,0 +1,4 @@
+EquipmentCode,name,colorCode
+Active,Active,3
+Inactive,Inactive,1
+Maintainance,Under Maintainance,2
