@@ -1,25 +1,24 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Mon May 12 2025 10:18:58 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Mon May 19 2025 10:30:17 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
-|**App Generator Version**<br>1.17.4|
+|**App Generator Version**<br>1.17.5|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local Cap|
-|**Service URL**<br>http://localhost:4004/odata/v4/admin/|
-|**Module Name**<br>adminequippmentapp|
-|**Application Title**<br>Equipment Manage App|
-|**Namespace**<br>com.equipo.demo|
+|**Service URL**<br>http://localhost:4004/odata/v4/employee/|
+|**Module Name**<br>employeeequipapp|
+|**Application Title**<br>Task Equipment Details|
+|**Namespace**<br>com.equip.demo|
 |**UI5 Theme**<br>sap_horizon|
-|**UI5 Version**<br>1.135.0|
+|**UI5 Version**<br>1.136.0|
 |**Enable Code Assist Libraries**<br>False|
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
-|**Main Entity**<br>Equipment|
-|**Navigation Entity**<br>None|
+|**Main Entity**<br>MyTasks|
 
-## adminequippmentapp
+## employeeequipapp
 
 An SAP Fiori application.
 
@@ -27,7 +26,7 @@ An SAP Fiori application.
 
 -   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply start your CAP project and navigate to the following location in your browser:
 
-http://localhost:4004/adminequippmentapp/webapp/index.html
+http://localhost:4004/employeeequipapp/webapp/index.html
 
 #### Pre-requisites:
 

@@ -10,7 +10,7 @@ sap.ui.define([
             opaTest("Start application", function (Given, When, Then) {
                 Given.iStartMyApp();
 
-                Then.onTheEquipmentList.iSeeThisPage();
+                Then.onTheMyTasksList.iSeeThisPage();
 
             });
 
@@ -18,12 +18,12 @@ sap.ui.define([
             opaTest("Navigate to ObjectPage", function (Given, When, Then) {
                 // Note: this test will fail if the ListReport page doesn't show any data
                 
-                When.onTheEquipmentList.onFilterBar().iExecuteSearch();
+                When.onTheMyTasksList.onFilterBar().iExecuteSearch();
                 
-                Then.onTheEquipmentList.onTable().iCheckRows();
+                Then.onTheMyTasksList.onTable().iCheckRows();
 
-                When.onTheEquipmentList.onTable().iPressRow(0);
-                Then.onTheEquipmentObjectPage.iSeeThisPage();
+                When.onTheMyTasksList.onTable().iPressRow(0);
+                Then.onTheMyTasksObjectPage.iSeeThisPage();
 
             });
 

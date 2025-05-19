@@ -1,2 +1,4 @@
 
-using from './adminequippmentapp/annotations';
+using from './adminequipmentapp/annotations';
+
+using from './employeeequipapp/annotations';

@@ -1,95 +1,81 @@
 using AdminService as service from '../../srv/AdminService';
 
 annotate service.Equipments with @(
-    UI.LineItem :[{
+    UI.LineItem:[{
     $Type : 'UI.DataField',
-    Label : 'Name',
-    Value : name
-    },
-        {
-            $Type : 'UI.DataField',
-            Value : type.name,
-            Label : 'Equipment Type',
-        },{
-    $Type : 'UI.DataField',
-   Label : 'Manufacturing',
-    Value : manufacturing
+    Label :  'Name',
+    Value : name, 
     },
     {
-    $Type : 'UI.DataField',
-    Label : 'Description',
-    Value : description
-    },{
-    $Type : 'UI.DataField',
-    Label : 'Status',
+      $Type : 'UI.DataField',
+    Label :  'Type',
+    Value : type.name
+    },
+     {
+      $Type : 'UI.DataField',
+    Label :  'Manufacturing',
+    Value :  manufacturing
+    },
+     {
+      $Type : 'UI.DataField',
+    Label :  'Description',
+    Value :  description
+    },
+    {
+      $Type : 'UI.DataField',
+    Label :  'Status',
     Value : status_EquipmentCode,
         Criticality : status.colorCode,
-    },
-
+    }
+    
     ],
     UI.SelectionFields : [
         type_code,
-        status_EquipmentCode,
+        status.EquipmentCode,
     ],
-    UI.HeaderFacets : [
-        
-    ],
-    UI.FieldGroup #Equipmentdetails : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-        ],
-    },
-    UI.DataPoint #ID : {
+    UI.DataPoint #status_EquipmentCode : {
         $Type : 'UI.DataPointType',
-        Value : ID,
-        Title : 'ID',
-    },
-    UI.DataPoint #name : {
-        $Type : 'UI.DataPointType',
-        Value : name,
-        Title : 'name',
-    },
-    UI.DataPoint #manufacturing : {
-        $Type : 'UI.DataPointType',
-        Value : manufacturing,
-        Title : 'manufacturing',
+        Value : status_EquipmentCode,
+        Title : 'status_EquipmentCode',
     },
     UI.DataPoint #type_code : {
         $Type : 'UI.DataPointType',
         Value : type_code,
         Title : 'type_code',
     },
-    UI.DataPoint #status_EquipmentCode : {
-        $Type : 'UI.DataPointType',
-        Value : status_EquipmentCode,
-        Title : 'status_EquipmentCode',
-    },
-    UI.DataPoint #createdAt : {
-        $Type : 'UI.DataPointType',
-        Value : createdAt,
-        Title : 'createdAt',
-    },
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'status_EquipmentCode',
+            Target : '@UI.DataPoint#status_EquipmentCode',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'type_code',
+            Target : '@UI.DataPoint#type_code',
+        },
+    ],
     UI.Facets : [
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Equipmemt Details',
-            ID : 'EquipmemtDetails',
-            Target : '@UI.FieldGroup#EquipmemtDetails',
+            Label : 'Equipment Details',
+            ID : 'EquipmentDetails',
+            Target : '@UI.FieldGroup#EquipmentDetails',
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Equipment-Tasklist',
-            ID : 'EquipmentTasklist',
-            Target : 'tasks/@UI.LineItem#EquipmentTasklist',
+            Label : 'Equipment Task Details',
+            ID : 'EquipmentTaskDetails',
+            Target : 'tasks/@UI.LineItem#EquipmentTaskDetails',
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Label : 'Issues',
-            ID : 'Issues',
-            Target : 'issues/@UI.LineItem#Issues',
+            Label : 'Issue Details',
+            ID : 'IssueDetails',
+            Target : 'issues/@UI.LineItem#IssueDetails',
         },
     ],
-    UI.FieldGroup #EquipmemtDetails : {
+    UI.FieldGroup #EquipmentDetails : {
         $Type : 'UI.FieldGroupType',
         Data : [
             {
@@ -99,34 +85,33 @@ annotate service.Equipments with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : manufacturing,
-                Label : 'manufacturing',
-            },
-            {
-                $Type : 'UI.DataField',
                 Value : name,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : type_code,
+                Label : 'Name',
             },
             {
                 $Type : 'UI.DataField',
                 Value : status_EquipmentCode,
+                Label : 'Status',
             },
             {
                 $Type : 'UI.DataField',
                 Value : location_locationId,
+                Label : 'Location',
             },
             {
                 $Type : 'UI.DataField',
-                Value : location.name,
-                Label : 'name',
+                Value : manufacturing,
+                Label : 'Manufacturing',
             },
             {
                 $Type : 'UI.DataField',
-                Value : status.name,
-                Label : 'name',
+                Value : type_code,
+                Label : 'Type',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : description,
+                Label : 'Description',
             },
             {
                 $Type : 'UI.DataField',
@@ -134,13 +119,11 @@ annotate service.Equipments with @(
             },
         ],
     },
-);
 
+
+) ;
 annotate service.Equipments with {
-    type @(
-        Common.Label : 'Equipment Type',
-        Common.Text : status_EquipmentCode,
-        Common.ValueList : {
+    type @(Common.ValueList : {
             $Type : 'Common.ValueListType',
             CollectionPath : 'EquipmentTypes',
             Parameters : [
@@ -152,87 +135,47 @@ annotate service.Equipments with {
             ],
             Label : 'Equipment Type',
         },
-        Common.ValueListWithFixedValues : true,
-    )
-};
+        Common.ValueListWithFixedValues : true
+)};
 
 annotate service.EquipmentTypes with {
     code @Common.Text : name
 };
 
-annotate service.Equipments with {
-    status @(
-        Common.Label : 'Equipment Status',
+annotate service.EquipmentStatus with {
+    EquipmentCode @(
+        Common.Label : 'status/EquipmentCode',
         Common.ValueList : {
             $Type : 'Common.ValueListType',
             CollectionPath : 'EquipmentStatus',
             Parameters : [
                 {
                     $Type : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : status_EquipmentCode,
+                    LocalDataProperty : EquipmentCode,
                     ValueListProperty : 'EquipmentCode',
                 },
             ],
             Label : 'Equipment Status',
         },
         Common.ValueListWithFixedValues : true,
+        Common.Text : name,
     )
 };
 
-annotate service.EquipmentStatus with {
-    EquipmentCode @Common.Text : name
-};
-
-annotate service.Locations with @(
-    UI.DataPoint #name : {
-        $Type : 'UI.DataPointType',
-        Value : name,
-        Title : 'name',
-    }
-);
 annotate service.Equipments with @(
-   UI.HeaderInfo:{
-    TypeName : name,
-    TypeNamePlural : 'name',
+  UI.HeaderInfo: {
+    TypeName: 'Equipments',
+    TypeNamePlural : 'Equipments',
     Title : {
-        $Type : 'UI.DataField',
-        Value : name
-    }   
-   }
+    $Type : 'UI.DataField',
+    Value : name
+    }
+  }
 
-) ;
-annotate service.Tasks with @(
-    UI.LineItem #EquipmentTasklist : [
-        {
-            $Type : 'UI.DataField',
-            Value : ID,
-            Label : 'ID',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : description,
-            Label : 'description',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : status_code,
-            Label : 'status_code',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : assignedTo.name,
-            Label : 'name',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : priority_code,
-            Label : 'priority_code',
-        },
-    ]
 );
 
-annotate service.Issues with @(
-    UI.LineItem #Issues : [
+annotate service.Tasks with @(
+    UI.LineItem #EquipmentTaskDetails : [
         {
             $Type : 'UI.DataField',
             Value : ID,
@@ -245,13 +188,48 @@ annotate service.Issues with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : issueStatus_statusCode,
+            Value : dueDate,
+            Label : 'Due Date',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : priority_code,
+            Label : 'Priority',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : status_code,
             Label : 'Status',
         },
         {
             $Type : 'UI.DataField',
+            Value : assignedTo.name,
+            Label : 'name',
+        },
+    ]
+);
+
+annotate service.Issues with @(
+    UI.LineItem #IssueDetails : [
+        {
+            $Type : 'UI.DataField',
+            Value : ID,
+            Label : 'ID',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : description,
+            Label : 'description',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : issueStatus_statusCode,
+            Label : 'issueStatus_statusCode',
+        },
+        {
+            $Type : 'UI.DataField',
             Value : reportedBy_ID,
-            Label : 'Reported By',
+            Label : 'reportedBy_ID',
         },
     ]
 );

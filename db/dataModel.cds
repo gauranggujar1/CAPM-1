@@ -48,12 +48,12 @@ entity TaskStatus {
 }
 
 entity EquipmentTypes {
-   key code : String(2);
+   key code : String(3);
       name : String(50);
 }
 
 entity Locations {
-   key locationId : String(3);
+   key locationId : String(6);
        name       : String(50);
    
 }

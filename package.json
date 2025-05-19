@@ -15,7 +15,9 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-adminequippmentapp": "cds watch --open adminequippmentapp/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-adminequippmentapp": "cds watch --open adminequippmentapp/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-adminequipmentapp": "cds watch --open adminequipmentapp/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-employeeequipapp": "cds watch --open employeeequipapp/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
@@ -28,6 +30,8 @@
     }
   },
   "sapux": [
-    "app/adminequippmentapp"
+    "app/adminequippmentapp",
+    "app/adminequipmentapp",
+    "app/employeeequipapp"
   ]
 }
