@@ -1,5 +1,5 @@
 {
-  "name": "EquipmentSystemApp",
+  "name": "equipmentsystemspp",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "repository": "<Add your repository here>",
@@ -24,7 +24,7 @@
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "url": "db.sqlite"
+          "database": "my.db"
         }
       }
     }

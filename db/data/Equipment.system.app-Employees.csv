@@ -1,1 +1,5 @@
 ID,name,username,email,role_code,createdAt,createdBy,modifiedAt,modifiedBy
+fe7eead5-6792-40ca-a822-5b695bb35296,Ananya Rao,ananya.rao,ananya.rao@example.com,AD,2025-05-19T14:09:40.172731,admin,2025-05-19T14:09:40.172737,admin
+5d4c7d54-2021-4fad-88c3-6c08fb76c20f,Rahul Mehta,rahul.mehta,rahul.mehta@example.com,EM,2025-05-19T14:09:40.172738,admin,2025-05-19T14:09:40.172740,admin
+9458e1cb-b328-4fd0-81a4-d41260d56d93,Meera Iyer,meera.iyer,meera.iyer@example.com,EM,2025-05-19T14:09:40.172741,admin,2025-05-19T14:09:40.172742,admin
+ae7e3565-e73f-45be-9aa4-d49a1f935417,Dev Sharma,dev.sharma,dev.sharma@example.com,AD,2025-05-19T14:09:40.172743,admin,2025-05-19T14:09:40.172744,admin

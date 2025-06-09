@@ -203,8 +203,8 @@ annotate service.Tasks with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : assignedTo.name,
-            Label : 'name',
+            Value : assignedTo_ID,
+            Label : 'Employee',
         },
     ]
 );
@@ -234,3 +234,96 @@ annotate service.Issues with @(
     ]
 );
 
+annotate service.Tasks with {
+    priority @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'TaskPriority',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : priority_code,
+                    ValueListProperty : 'code',
+                },
+            ],
+            Label : 'Priority',
+        },
+        Common.ValueListWithFixedValues : true
+)};
+
+annotate service.TaskPriority with {
+    code @Common.Text : name
+};
+
+annotate service.Tasks with {
+    status @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'TaskStatus',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : status_code,
+                    ValueListProperty : 'code',
+                },
+            ],
+            Label : 'Status',
+        },
+        Common.ValueListWithFixedValues : true
+)};
+
+annotate service.TaskStatus with {
+    code @Common.Text : name
+};
+
+annotate service.Employees with {
+    name @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Employees',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : name,
+                    ValueListProperty : 'name',
+                },
+            ],
+            Label : 'Employee',
+        },
+        Common.ValueListWithFixedValues : false
+)};
+
+annotate service.Tasks with {
+    assignedTo @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Employees',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : assignedTo_ID,
+                    ValueListProperty : 'ID',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'username',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'email',
+                },
+            ],
+        },
+        Common.ValueListWithFixedValues : false,
+        Common.Text : assignedTo.name,
+)};
+
+annotate service.Employees with {
+    ID @Common.Text : name
+};
+
+annotate service.Equipments with {
+    manufacturing @Common.FieldControl : #ReadOnly
+};
+
+annotate service.Equipments with @(Common.SideEffects #updateManufacturer: {
+  SourceProperties: ['type_code'],
+  TargetProperties : ['manufacturing']
+
+});

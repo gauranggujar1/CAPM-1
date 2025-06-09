@@ -1,8 +1,8 @@
-code,name
-HYD,Hydraulic Press
-WLD,Welding Machine
-AIR,Air Compressor
-CNV,Conveyor Belt
-DRL,Drill Machine
-GEN,Diesel generator
-PLC,Programmable Logic Controller
+code,name,manufacturer
+HYD,Hydraulic Press,BOSCH
+WLD,Welding Machine,BOSCH
+AIR,Air Compressor,Schneider Electric
+CNV,Conveyor Belt,Schneider Electric
+DRL,Drill Machine,Rockwell Automation
+GEN,Diesel generator,Honeywell
+PLC,Programmable Logic Controller,GE

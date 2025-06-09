@@ -27,34 +27,157 @@ annotate service.MyTasks with @(
     },
     UI.Facets : [
         {
-            $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'General Information',
-            Target : '@UI.FieldGroup#GeneratedGroup',
+            $Type : 'UI.CollectionFacet',
+            Label : 'Task Details',
+            ID : 'TaskDetails',
+            Facets : [
+                {
+                    $Type : 'UI.CollectionFacet',
+                    Label : 'Task Info',
+                    ID : 'TaskInfo',
+                    Facets : [
+                        {
+                            $Type : 'UI.ReferenceFacet',
+                            Label : 'Task Details',
+                            ID : 'TaskDetails1',
+                            Target : '@UI.FieldGroup#TaskDetails',
+                        },
+                        {
+                            $Type : 'UI.ReferenceFacet',
+                            Label : 'Equipment Details',
+                            ID : 'EquipmentDetails',
+                            Target : '@UI.FieldGroup#EquipmentDetails1',
+                        },
+                        {
+                            $Type : 'UI.ReferenceFacet',
+                            Label : 'My Issues',
+                            ID : 'MyIssues',
+                            Target : 'issues/@UI.LineItem#MyIssues',
+                        },
+                    ],
+                },
+            ],
         },
     ],
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'description',
+            Value : ID,
+            Label : 'ID',
+        },
+        {
+            $Type : 'UI.DataField',
             Value : description,
+            Label : 'description',
         },
         {
             $Type : 'UI.DataField',
-            Label : 'dueDate',
             Value : dueDate,
+            Label : 'dueDate',
         },
         {
             $Type : 'UI.DataField',
-            Label : 'priority_code',
+            Value : equipment.name,
+        },
+        {
+            $Type : 'UI.DataField',
             Value : priority_code,
+            Label : 'priority_code',
         },
         {
             $Type : 'UI.DataField',
-            Label : 'status_code',
             Value : status_code,
+            Label : 'status_code',
         },
     ],
+    UI.FieldGroup #TaskInformation : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : ID,
+                Label : 'ID',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : description,
+                Label : 'Description',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : dueDate,
+                Label : 'Due Date',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : priority_code,
+                Label : 'Priority',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : status_code,
+                Label : 'Status',
+            },
+        ],
+    },
+    UI.FieldGroup #EquipmentDetails : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+        ],
+    },
+    UI.FieldGroup #TaskDetails : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : ID,
+                Label : 'ID',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : description,
+                Label : 'Description',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : dueDate,
+                Label : 'Due Date',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : priority_code,
+                Label : 'Priority',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : status_code,
+                Label : 'Status',
+            },
+        ],
+    },
+    UI.FieldGroup #EquipmentDetails1 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : equipment.name,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : equipment.manufacturing,
+                Label : 'manufacturing',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : equipment.description,
+                Label : 'description',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : equipment.location_locationId,
+            },
+        ],
+    },
 );
 
 annotate service.MyTasks with {
@@ -122,4 +245,28 @@ annotate service.MyTasks with {
         ],
     }
 };
+
+annotate service.MyIssues with @(
+    UI.LineItem #MyIssues : [
+        {
+            $Type : 'UI.DataField',
+            Value : task.issues.ID,
+            Label : 'ID',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : task.issues.description,
+            Label : 'Description',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : task.issues.issueStatus_statusCode,
+            Label : 'Issue Status',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : task.issues.modifiedBy,
+        },
+    ]
+);
 

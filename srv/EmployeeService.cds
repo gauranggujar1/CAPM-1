@@ -3,9 +3,24 @@ using { Equipment.system.app as service } from '../db/dataModel';
 
 service EmployeeService {
     @odata.draft.enabled
-    entity Equipments as projection on service.Equipments;
-    entity MyTasks as projection on service.Tasks;
-    entity MyIssues as projection on service.Issues;
+    entity Equipments @(restrict :[
+        {
+        grant : ['READ'],
+        to    : [ 'employeeUser']
+        }
+    ]) as projection on service.Equipments;
+    entity MyTasks@(restrict :[
+        {
+        grant : ['READ'],
+        to    : [ 'employeeUser']
+        }
+    ]) as projection on service.Tasks;
+    entity MyIssues @(restrict :[
+        {
+        grant : ['*'],
+        to    : [ 'employeeUser']
+        }
+    ]) as projection on service.Issues;
     entity Locations as projection on service.Locations;
     entity EquipmentStatus as projection on service.EquipmentStatus;
     entity IssueStatus as projection on service.IssueStatus;
@@ -15,5 +30,10 @@ service EmployeeService {
     entity Roles as projection on service.Roles;
     entity EquipmentTypes as projection on service.EquipmentTypes;
     
+     type ArrayEmpData {
+        taskId : String;
+     };
+     
+    action updateTaskCompleted(taskData : array of ArrayEmpData ) returns String;
 
 }

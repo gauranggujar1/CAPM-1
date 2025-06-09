@@ -20,6 +20,7 @@ entity Tasks : cuid , managed {
    status       : Association to TaskStatus ;
    assignedTo   :  Association to Employees ;
    equipment    : Association to  Equipments;
+   issues       : Composition of many Issues on issues.task = $self ;
 }
 
 entity Issues : cuid , managed {
@@ -27,6 +28,7 @@ entity Issues : cuid , managed {
    reportedBy   : Association to Employees;
    equipment    : Association to Equipments;
    issueStatus  : Association to IssueStatus ;
+   task         : Association to Tasks;
    
 }
 
@@ -43,13 +45,14 @@ entity Roles {
 }
 
 entity TaskStatus {
-  key code : String(2);
+  key code : String(12);
    name : String(50);
 }
 
 entity EquipmentTypes {
    key code : String(3);
       name : String(50);
+      manufacturer : String(30);
 }
 
 entity Locations {
